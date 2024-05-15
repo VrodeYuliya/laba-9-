@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -22,6 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.topic3.android.reddit.R
 
 import com.topic3.android.reddit.theme.RedditThemeSettings
@@ -95,6 +97,38 @@ private fun ProfileInfoItem(
   modifier: Modifier
 ) {
   //TODO add your code here
+  val colors = MaterialTheme.colors
+
+  ConstraintLayout (modifier = modifier){
+    val (iconRef, amountRef,titleRef) = createRefs() // references
+    val itemModifier = Modifier
+
+    Icon(
+      contentDescription = stringResource(id = textResourceId),
+      imageVector = iconAsset,
+      tint = Color.Blue,
+      modifier = itemModifier
+    )
+      Text(
+        text = stringResource(amountResourceId),
+        color = colors.primaryVariant,
+        fontSize = 10.sp,
+        modifier = itemModifier
+      )
+        Text(
+          text =  stringResource(textResourceId),
+          color = Color.Gray,
+          fontSize = 10.sp,
+          modifier = itemModifier
+          .padding(start = 8.dp)
+        .constrainAs(titleRef){
+          top.linkTo(amountRef.bottom)
+          start.linkTo(iconRef.end)
+          bottom.linkTo(iconRef.bottom)
+        }
+
+    )
+  }
 }
 
 /**
