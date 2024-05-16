@@ -62,7 +62,7 @@ private fun AppDrawerHeader() {
 Column(
   modifier = Modifier.fillMaxWidth(),
   horizontalAlignment = Alignment.CenterHorizontally
-){
+) {
   Image(
     imageVector = Icons.Filled.AccountCircle,
     colorFilter = ColorFilter.tint(Color.LightGray),
@@ -72,11 +72,13 @@ Column(
     contentScale = ContentScale.Fit,
     alignment = Alignment.Center,
     contentDescription = stringResource(id = R.string.account)
-    )
+  )
   Text(
     text = stringResource(R.string.default_username),
-    color = MaterialTheme.colors.primaryVariant)
-
+    color = MaterialTheme.colors.primaryVariant
+  )
+  ProfileInfo()// dobavit
+  
 
  }
   Divider(
